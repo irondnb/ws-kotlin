@@ -1,0 +1,1 @@
+/Users/irondnb/IdeaProjects/ws-example/server/build/classes/kotlin/main/com/irondnb/chat/server/ApplicationKt.class
