@@ -1,7 +1,11 @@
-/.gradle
-/.idea
-/out
-/build
+server/.gradle
+server/.idea
+server/out
+server/build
+client/.gradle
+client/.idea
+client/out
+client/build
 *.iml
 *.ipr
 *.iws
