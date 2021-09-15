@@ -13,12 +13,25 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.module() {
     install(WebSockets)
     routing {
+        val connections = Collections.synchronizedSet<Connection?>(LinkedHashSet())
         webSocket("/chat") {
-            send("You are connected!")
-            for(frame in incoming) {
-                frame as? Frame.Text ?: continue
-                val receivedText = frame.readText()
-                send("You said: $receivedText")
+            val connection = Connection(this)
+            connections += connection
+            try {
+                send("You are connected! There are ${connections.count()} users here.")
+                for(frame in incoming) {
+                    frame as? Frame.Text ?: continue
+                    val receivedText = frame.readText()
+                    val textWithUserName = "[${connection.userName}]: $receivedText"
+                    connections.forEach {
+                        it.session.send(textWithUserName)
+                    }
+                }
+            } catch (e: Exception) {
+                log.error(e.localizedMessage)
+            } finally {
+                log.info("Removing $connection!")
+                connections -= connection
             }
         }
     }
