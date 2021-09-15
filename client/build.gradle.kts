@@ -1,21 +1,15 @@
-val ktor_version: String by project
-val kotlin_version: String by project
-val logback_version: String by project
-
 plugins {
-    application
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.5.20"
 }
 
-group = "com.example"
-version = "0.0.1"
-application {
-    mainClass.set("com.example.ApplicationKt")
-}
+group = "com.irondnb"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
+
+val ktor_version: String by project
 
 dependencies {
     implementation("io.ktor:ktor-client-websockets:$ktor_version")
