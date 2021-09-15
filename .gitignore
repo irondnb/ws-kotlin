@@ -10,3 +10,4 @@ client/build
 *.ipr
 *.iws
 .DS_Store
+.idea
