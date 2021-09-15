@@ -1,11 +1,13 @@
 package com.example
 
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import com.example.plugins.*
+import io.ktor.client.*
+import io.ktor.client.features.websocket.*
+import io.ktor.http.*
+import io.ktor.http.cio.websocket.*
+import io.ktor.util.*
+import kotlinx.coroutines.*
+
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
-        configureRouting()
-    }.start(wait = true)
+
 }
