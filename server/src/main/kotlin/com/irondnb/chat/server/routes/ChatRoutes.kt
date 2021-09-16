@@ -3,6 +3,7 @@ package com.irondnb.chat.server.routes
 import com.irondnb.chat.server.Connection
 import com.irondnb.chat.server.Server
 import com.irondnb.chat.server.messageHandler
+import io.ktor.application.*
 import io.ktor.http.cio.websocket.*
 import io.ktor.routing.*
 import io.ktor.websocket.*
@@ -10,7 +11,7 @@ import io.ktor.websocket.*
 fun Route.chatRoute(server: Server) {
     webSocket("/chat") {
         val connection = Connection(this)
-        server.connections += connection
+        server.add(connection)
         try {
             send("You are connected! There are ${server.connections.count()} users here.")
             for(frame in incoming) {
@@ -18,10 +19,10 @@ fun Route.chatRoute(server: Server) {
                 messageHandler(connection, frame.readText(), server)
             }
         } catch (e: Exception) {
-            log.error(e.localizedMessage)
+            call.application.log.error(e.localizedMessage)
         } finally {
-            log.info("Removing $connection!")
-            server.connections -= connection
+            call.application.log.info("Removing $connection!")
+            server.remove(connection)
         }
     }
 }
