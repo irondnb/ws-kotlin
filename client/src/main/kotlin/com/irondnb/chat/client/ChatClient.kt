@@ -7,6 +7,8 @@ import io.ktor.http.cio.websocket.*
 import io.ktor.util.*
 import kotlinx.coroutines.*
 import java.lang.Exception
+import tornadofx.*
+
 
 suspend fun DefaultClientWebSocketSession.outputMessages() {
     try {

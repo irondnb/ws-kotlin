@@ -16,7 +16,7 @@ fun Route.chatRoute(server: Server) {
             send("You are connected! There are ${server.connections.count()} users here.")
             for(frame in incoming) {
                 frame as? Frame.Text ?: continue
-                messageHandler(connection, frame.readText(), server)
+                messageHandler(connection.user, frame.readText(), server)
             }
         } catch (e: Exception) {
             call.application.log.error(e.localizedMessage)
