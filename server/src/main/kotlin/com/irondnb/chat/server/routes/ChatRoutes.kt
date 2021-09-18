@@ -1,7 +1,7 @@
 package com.irondnb.chat.server.routes
 
 import com.irondnb.chat.server.Connection
-import com.irondnb.chat.server.Server
+import com.irondnb.chat.server.models.Server
 import com.irondnb.chat.server.messageHandler
 import io.ktor.application.*
 import io.ktor.http.cio.websocket.*

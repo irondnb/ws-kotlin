@@ -1,5 +1,6 @@
-package com.irondnb.chat.server
+package com.irondnb.chat.server.models
 
+import com.irondnb.chat.server.Connection
 import io.ktor.http.cio.websocket.*
 import java.util.*
 

@@ -1,5 +1,6 @@
 package com.irondnb.chat.server
 
+import com.irondnb.chat.server.models.Server
 import com.irondnb.chat.server.routes.chatRoute
 import io.ktor.application.*
 import io.ktor.routing.*
