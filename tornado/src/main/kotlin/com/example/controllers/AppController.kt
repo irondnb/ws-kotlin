@@ -18,14 +18,14 @@ class AppController: Controller() {
 
         chatService.observeIncomingMessages().subscribe { message ->
             println(message)
-            append(message)
+            appendMessage(message)
         }
     }
 
 
-    fun append(message: ChatMessage) {
+    fun appendMessage(message: ChatMessage) {
         runLater {
-            chatMessages += "${message.sender}: ${message.content}"
+            chatMessages += "${message.sender.name}: ${message.content}"
         }
     }
 }

@@ -12,7 +12,11 @@ class MainView : View() {
     }
 
     override val root = borderpane {
-        center = listview<String>(controller.chatMessages)
+        center = scrollpane {
+            vbox {
+                listview(controller.chatMessages)
+            }
+        }
         bottom = bottomView.root
     }
 }
