@@ -1,5 +1,6 @@
 package com.example.controllers
 
+import com.example.models.ChatMessage
 import com.tinder.scarlet.Message.Text
 import com.tinder.scarlet.WebSocket.Event.OnMessageReceived
 import javafx.collections.FXCollections
@@ -12,17 +13,20 @@ class AppController: Controller() {
     val chatService:  ChatController by inject()
 
     fun connect() {
+
         chatService.observeWebSocketEvent().subscribe { event ->
-            when(event) {
-               is OnMessageReceived -> append(event.message as Text)
-               else -> println(event)
-            }
+            println(event)
+        }
+
+        chatService.observeIncomingMessages().subscribe { message ->
+            append(message)
         }
     }
 
-    fun append(message: Text) {
+
+    fun append(message: ChatMessage) {
         runLater {
-            chatMessages += message.value
+            chatMessages += "${message.user}: ${message.message}"
         }
     }
 }

@@ -1,3 +1,5 @@
 package com.example.models
 
-data class ChatMessage(val value: String)
+import tornadofx.ItemViewModel
+
+data class ChatMessage(val user: User, val message: String)

@@ -1,7 +1,12 @@
 package com.example.controllers
 
 import com.example.ChatService
+import com.example.models.ChatMessage
+import com.example.models.User
+import com.example.models.adapters.ChatMessageAdapter
+import com.example.models.adapters.UserAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tinder.scarlet.Scarlet
 import com.tinder.scarlet.messageadapter.moshi.MoshiMessageAdapter
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
@@ -14,6 +19,9 @@ class ChatController: ChatService, Controller() {
         .build()
 
     private val moshi: Moshi = Moshi.Builder()
+        .addLast(KotlinJsonAdapterFactory())
+        .add(UserAdapter())
+        .add(ChatMessageAdapter())
         .build()
 
     private val scarletInstance = Scarlet.Builder()
@@ -21,6 +29,7 @@ class ChatController: ChatService, Controller() {
         .addStreamAdapterFactory(RxJava2StreamAdapterFactory())
         .addMessageAdapterFactory(MoshiMessageAdapter.Factory(moshi))
         .build()
+
 
     private val chatService = scarletInstance.create<ChatService>()
 
