@@ -25,7 +25,7 @@ class AppController: Controller() {
 
     fun append(message: ChatMessage) {
         runLater {
-            chatMessages += "${message.user}: ${message.message}"
+            chatMessages += "${message.sender}: ${message.content}"
         }
     }
 }

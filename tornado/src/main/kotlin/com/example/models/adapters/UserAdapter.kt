@@ -7,12 +7,13 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class UserJson(
-    val id: Int
+    val id: Int,
+    val name: String
 )
 
 class UserAdapter {
     @FromJson
     fun fromJson(userJson: UserJson): User {
-        return User(userJson.id)
+        return User(userJson.id, userJson.name)
     }
 }
