@@ -1,8 +1,6 @@
 package com.example.controllers
 
 import com.example.models.ChatMessage
-import com.tinder.scarlet.Message.Text
-import com.tinder.scarlet.WebSocket.Event.OnMessageReceived
 import javafx.collections.FXCollections
 import tornadofx.Controller
 import tornadofx.runLater
@@ -19,6 +17,7 @@ class AppController: Controller() {
         }
 
         chatService.observeIncomingMessages().subscribe { message ->
+            println(message)
             append(message)
         }
     }

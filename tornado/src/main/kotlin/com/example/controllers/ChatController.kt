@@ -1,8 +1,6 @@
 package com.example.controllers
 
 import com.example.ChatService
-import com.example.models.ChatMessage
-import com.example.models.User
 import com.example.models.adapters.ChatMessageAdapter
 import com.example.models.adapters.UserAdapter
 import com.squareup.moshi.Moshi

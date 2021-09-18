@@ -11,7 +11,6 @@ interface ChatService {
     fun observeWebSocketEvent(): Flowable<WebSocket.Event>
     @Receive
     fun observeIncomingMessages(): Flowable<ChatMessage>
-
     @Send
     fun sendMessage(message: String)
 }
